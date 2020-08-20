@@ -1,0 +1,20 @@
+{
+    "name": "tj-shenqi-script",
+    "displayName": "tj-shenqi-script",
+    "description": "HangZhou TianJi - ShenQi Battle Script",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.48.0"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [
+            {
+                "language": "lua",
+                "path": "./snippets/snippets.code-snippets"
+            }
+        ]
+    }
+}
