@@ -1,1 +1,46 @@
-{}
+{
+	"debug": {
+		"prefix": "debug",
+		"body": [
+			"{",
+			"\ttype = \"debug\",",
+			"\tbreakpoint = ${1|nil,true|},",
+			"\tcode = \"${2}\",",
+			"},"
+		],
+		"description": "调试"
+	},
+	"run": {
+		"prefix": "run",
+		"body": [
+			"{",
+			"\ttype = \"run\",",
+			"\tmode = \"${1|append,parallel|}\",",
+			"\tname = \"${2}\",",
+			"},"
+		],
+		"description": "调用脚本"
+	},
+	"event": {
+		"prefix": "event",
+		"body": [
+			"{",
+			"\ttype = \"event\",",
+			"\tevent = \"${1}\",",
+			"\tsendType = \"${2|self,global,tag|}\",",
+			"},"
+		],
+		"description": "发送自定义事件"
+	},
+	"wait": {
+		"prefix": "wait",
+		"body": [
+			"{",
+			"\ttype = \"wait\",",
+			"\tlifetime = ${1},",
+			"\tdelay = ${2},",
+			"},"
+		],
+		"description": "等待"
+	}
+}

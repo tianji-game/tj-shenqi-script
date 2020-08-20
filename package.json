@@ -3,18 +3,63 @@
     "displayName": "tj-shenqi-script",
     "description": "HangZhou TianJi - ShenQi Battle Script",
     "version": "0.0.1",
+    "icon": "images/tjlogo.png",
     "engines": {
         "vscode": "^1.48.0"
     },
     "categories": [
         "Snippets"
     ],
+    "main": "./out/extension.js",
+    "activationEvents": [
+        "onLanguage:lua",
+        "onCommand:shenqi.showAll"
+    ],
     "contributes": {
+        "commands": [
+			{
+				"command": "shenqi.showAll",
+				"title": "showAll"
+			}
+		],
         "snippets": [
             {
                 "language": "lua",
                 "path": "./snippets/snippets.code-snippets"
             }
+        ],
+        "configurationDefaults": {
+            "[lua]": {
+                "editor.snippetSuggestions": "top",
+                "editor.tabCompletion": true
+            }
+        },
+        "keybindings": [
+            {
+                "command": "shenqi.showAll",
+                "key": "ctrl+d",
+                "mac": "cmd+d",
+                "when": "editorTextFocus"
+            }
         ]
-    }
+    },
+    "scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.48.0",
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.0.0",
+		"@types/node": "^14.0.27",
+		"eslint": "^7.6.0",
+		"@typescript-eslint/eslint-plugin": "^3.8.0",
+		"@typescript-eslint/parser": "^3.8.0",
+		"glob": "^7.1.6",
+		"mocha": "^8.0.1",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.4.0"
+	}
 }
