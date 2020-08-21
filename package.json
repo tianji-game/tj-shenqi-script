@@ -4,6 +4,8 @@
     "description": "HangZhou TianJi - ShenQi Battle Script",
     "version": "0.0.1",
     "icon": "images/tjlogo.png",
+    "publisher": "HuangWei",
+    "repository": "https://github.com/tianji-game/tj-shenqi-script",
     "engines": {
         "vscode": "^1.48.0"
     },
