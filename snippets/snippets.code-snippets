@@ -1,11 +1,100 @@
 {
+	"action": {
+		"prefix": "action",
+		"body": [
+			"{",
+			"\ttype = 'action',",
+			"\tname = '${1}',",
+			"\tundoAfter = ${2|nil,1|},",
+			"},"
+		],
+		"description": "Spine动作"
+	},
+	"audio": {
+		"prefix": "audio",
+		"body": [
+			"{",
+			"\ttype = 'audio',",
+			"\top = '${1|play,stop,pause,resume,resumeAll,stopAll|}',",
+			"\tpath = '${2}',",
+			"},"
+		],
+		"description": "音效"
+	},
+	"visible": {
+		"prefix": "visible",
+		"body": [
+			"{",
+			"\ttype = 'visible',",
+			"\tvalue = ${1|true,false|},",
+			"\tpath = '${2}',",
+			"\ttargetsFilter = ${3|'',{}|},",
+			"\ttargetsSaveBB = ${4|nil,''},",
+			"},"
+		],
+		"description": "可见性"
+	},
+	"shaker": {
+		"prefix": "shaker",
+		"body": [
+			"{",
+			"\ttype = 'shaker',",
+			"\tx = ${1|nil,1|},",
+			"\ty = ${2|nil,1|},",
+			"\tbegint = ${3|nil,1|},",
+			"\tendt = ${4:0},",
+			"\tlifetime = ${5|nil,1|},",
+			"\tdelay = ${6|nil,1|},",
+			"},"
+		],
+		"description": "场景震屏"
+	},
+
+
+	
+	"condition": {
+		"prefix": "condition",
+		"body": [
+			"{",
+			"\ttype = 'condition',",
+			"\tcond = '${1}',",
+			"\tiftrue = ${2|nil,''|},",
+			"\tiffalse = ${3|nil,''|},",
+			"},"
+		],
+		"description": "条件判断"
+	},
+	"loop": {
+		"prefix": "loop",
+		"body": [
+			"{",
+			"\ttype = 'loop',",
+			"\ttimes = ${1|2,''|},",
+			"\tcmds = {${2}},",
+			"},"
+		],
+		"description": "循环"
+	},
+	"bb": {
+		"prefix": "bb",
+		"body": [
+			"{",
+			"\ttype = 'bb',",
+			"\tkey = '${1}',",
+			"\tvalue = ${2|1,''|},",
+			"\ttargetsFilter = ${3|'',{}|},",
+			"\ttargetsSaveBB = ${4|nil,''|},",
+			"},"
+		],
+		"description": "黑板"
+	},
 	"debug": {
 		"prefix": "debug",
 		"body": [
 			"{",
-			"\ttype = \"debug\",",
+			"\ttype = 'debug',",
 			"\tbreakpoint = ${1|nil,true|},",
-			"\tcode = \"${2}\",",
+			"\tcode = '${2}',",
 			"},"
 		],
 		"description": "调试"
@@ -14,9 +103,9 @@
 		"prefix": "run",
 		"body": [
 			"{",
-			"\ttype = \"run\",",
-			"\tmode = \"${1|append,parallel|}\",",
-			"\tname = \"${2}\",",
+			"\ttype = 'run',",
+			"\tmode = '${1|append,parallel|}',",
+			"\tname = '${2}',",
 			"},"
 		],
 		"description": "调用脚本"
@@ -25,9 +114,9 @@
 		"prefix": "event",
 		"body": [
 			"{",
-			"\ttype = \"event\",",
-			"\tevent = \"${1}\",",
-			"\tsendType = \"${2|self,global,tag|}\",",
+			"\ttype = 'event',",
+			"\tevent = '${1}',",
+			"\tsendType = '${2|self,global,tag|}',",
 			"},"
 		],
 		"description": "发送自定义事件"
@@ -36,11 +125,81 @@
 		"prefix": "wait",
 		"body": [
 			"{",
-			"\ttype = \"wait\",",
-			"\tlifetime = ${1},",
-			"\tdelay = ${2},",
+			"\ttype = 'wait',",
+			"\tlifetime = ${1|nil,1|},",
+			"\tdelay = ${2|nil,1|},",
 			"},"
 		],
 		"description": "等待"
+	},
+
+
+	"move": {
+		"prefix": "move",
+		"body": [
+			"{",
+			"\ttype = 'move',",
+			"\tx = ${1:1},",
+			"\ty = ${2:1},",
+			"\tmode = '${3|to,by|}',",
+			"\tlifetime = ${4:1},",
+			"\tdelay = ${5|nil,1|},",
+			"},"
+		],
+		"description": "移动"
+	},
+
+
+
+	"damage": {
+		"prefix": "damage",
+		"body": [
+			"{",
+			"\ttype = 'damage',",
+			"\tvalue = ${1|1:''|},",
+			"\ttargetsFilter = ${2|'',{}|},",
+			"\ttargetsSaveBB = ${3|nil,''|},",
+			"},"
+		],
+		"description": "伤害"
+	},
+	"recover": {
+		"prefix": "recover",
+		"body": [
+			"{",
+			"\ttype = 'recover',",
+			"\tvalue = ${1|1:''|},",
+			"\ttargetsFilter = ${2|'',{}|},",
+			"\ttargetsSaveBB = ${3|nil,''|},",
+			"},"
+		],
+		"description": "恢复"
+	},
+	"modifier": {
+		"prefix": "modifier",
+		"body": [
+			"{",
+			"\ttype = 'modifier',",
+			"\tkey = '${1|attrs_base.X,attrs_buff.X,attrs.correct,state.X,record.X,cd.X|}',",
+			"\top = '${2|+,-,*,=|}',",
+			"\tvalue = ${3|1,''|},",
+			"\ttargetsFilter = ${4|'',{}|},",
+			"\ttargetsSaveBB = ${5|nil,''|},",
+			"},"
+		],
+		"description": "对象修改器"
+	},
+	"subobject": {
+		"prefix": "subobject",
+		"body": [
+			"{",
+			"\ttype = 'subobject',",
+			"\tid = ${1:1},",
+			"\ttargetsFilter = ${2|'',{}|},",
+			"\ttargetsSaveBB = ${3|nil,''|},",
+			"\t${4|cdDelay,lifetimeT,cd,count,speed|} = ,",
+			"},"
+		],
+		"description": "生成子物体"
 	}
 }

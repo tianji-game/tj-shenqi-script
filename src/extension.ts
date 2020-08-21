@@ -4,12 +4,21 @@ function getRootPath() {
   return vscode.workspace.rootPath || '.';
 }
 
+function beautify(text: string) {
+  text = text.replace(/{\s*}/g, "");
+  // remove nil value, = nil, =,
+  text = text.replace(/^.*=\s*(nil)?,?\s*$/gm, "");
+  // remove empty lines
+  text = text.replace(/^\s*\r?\n/gm, "");
+  return text
+}
+
 // 插件激活时的入口
 export function activate(context: vscode.ExtensionContext) {
   const fs = require("fs");
   const path = require("path");
 
-  vscode.window.showInformationMessage("Init Extension");
+  // vscode.window.showInformationMessage("Init Extension");
 
   let codePath = path.join(context.extensionPath, "snippets", "snippets.code-snippets");
   let fileUri = vscode.Uri.file(codePath);
@@ -29,7 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
       v.bodyStr = v.body.join(crlf);
       cmdlist.push(k + "\t" + v.description);
     })
-    vscode.window.showInformationMessage("Init Snippets OK!");
+    vscode.window.showInformationMessage("Init ShenQi Snippets OK!");
     // vscode.window.showInformationMessage(cmdlist.toString());
   })
 
@@ -56,19 +65,26 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposable);
 
   context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((td) => {
-    vscode.window.showInformationMessage(`did save ${td.uri.fsPath} ${td.lineCount}`);
+    // vscode.window.showInformationMessage(`did save ${td.uri.fsPath} ${td.lineCount}`);
   }));
   context.subscriptions.push(vscode.workspace.onWillSaveTextDocument((e) => {
     let {document} = e;
     let text = document.getText();
-    let text2 = text.replace(/^.*=\s*nil,\s*$/gm, "");
+    let text2 = text;
+    
+    let l = 0;
+    while (text2.length != l) {
+      l = text2.length;
+      text2 = beautify(text2);
+    }
+
     let start = new vscode.Position(0, 0);
     let end = new vscode.Position(document.lineCount - 1, document.lineAt(document.lineCount - 1).text.length);
     let range = new vscode.Range(start, end);
     e.waitUntil(Promise.resolve([
       vscode.TextEdit.replace(range, text2)
     ]));
-    vscode.window.showInformationMessage(`will save ${document.lineCount}`);
+    // vscode.window.showInformationMessage(`will save ${document.lineCount}`);
   }));
 
   // return 的内容可以作为这个插件对外的接口
