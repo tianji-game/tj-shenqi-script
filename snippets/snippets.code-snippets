@@ -27,9 +27,8 @@
 			"{",
 			"\ttype = 'visible',",
 			"\tvalue = ${1|true,false|},",
-			"\tpath = '${2}',",
-			"\ttargetsFilter = ${3|'',{}|},",
-			"\ttargetsSaveBB = ${4|nil,''},",
+			"\ttargetsFilter = ${2|'',{}|},",
+			"\ttargetsSaveBB = ${3|nil,''|},",
 			"},"
 		],
 		"description": "可见性"
