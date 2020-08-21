@@ -156,7 +156,7 @@
 		"body": [
 			"{",
 			"\ttype = 'damage',",
-			"\tvalue = ${1|1:''|},",
+			"\tvalue = ${1|1,''|},",
 			"\ttargetsFilter = ${2|'',{}|},",
 			"\ttargetsSaveBB = ${3|nil,''|},",
 			"},"
@@ -168,7 +168,7 @@
 		"body": [
 			"{",
 			"\ttype = 'recover',",
-			"\tvalue = ${1|1:''|},",
+			"\tvalue = ${1|1,''|},",
 			"\ttargetsFilter = ${2|'',{}|},",
 			"\ttargetsSaveBB = ${3|nil,''|},",
 			"},"
